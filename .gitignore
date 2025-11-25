@@ -1,0 +1,51 @@
+# --- DATA DIRECTORIES ---
+data/raw/
+data/processed/
+*.csv
+*.sdf
+*.pkl
+*.npz
+*.npy
+
+# --- EXPERIMENTS ---
+experiments/runs/
+experiments/checkpoints/
+experiments/results/
+wandb/
+mlruns/
+*.ckpt
+*.pth
+*.joblib
+
+# --- ENVIRONMENT & CONFIG ---
+.env
+.env.*
+*.log
+
+# --- PYTHON ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+dist/
+build/
+
+# --- NOTEBOOKS ---
+.ipynb_checkpoints/
+
+# --- IDE / EDITORS ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- OS FILES ---
+.DS_Store
+Thumbs.db
+
+# --- JAX / FLAX ---
+*.cache
+.jax_cache/
+EOF
