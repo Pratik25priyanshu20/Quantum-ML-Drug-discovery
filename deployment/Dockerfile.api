@@ -1,0 +1,45 @@
+FROM continuumio/miniconda3
+
+# ------------------------------
+# 1. Install dependencies
+# ------------------------------
+RUN conda install -y -c conda-forge \
+    python=3.10 \
+    rdkit \
+    numpy \
+    pandas \
+    scikit-learn \
+    && conda clean -afy
+
+# ------------------------------
+# 2. Install PennyLane + JAX (compatible versions)
+# ------------------------------
+RUN pip install --no-cache-dir \
+    pennylane==0.34.0 \
+    autoray==0.6.3 \
+    jax==0.4.28 \
+    jaxlib==0.4.28 \
+    flax \
+    fastapi \
+    uvicorn \
+    requests
+
+# ------------------------------
+# 3. Working directory
+# ------------------------------
+WORKDIR /app
+
+# ------------------------------
+# 4. Copy entire project
+# ------------------------------
+COPY . /app
+
+# ------------------------------
+# 5. Expose FastAPI port
+# ------------------------------
+EXPOSE 8000
+
+# ------------------------------
+# 6. Start server
+# ------------------------------
+CMD ["uvicorn", "api.app:app", "--host", "0.0.0.0", "--port", "8000"]

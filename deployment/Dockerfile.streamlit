@@ -1,0 +1,35 @@
+FROM python:3.10-slim
+
+# --------------------------------------------------
+# Install Cairo + system libs for RDKit drawing
+# --------------------------------------------------
+RUN apt-get update && apt-get install -y \
+    libcairo2 \
+    libcairo2-dev \
+    libpango-1.0-0 \
+    libpangocairo-1.0-0 \
+    libsm6 \
+    libxrender1 \
+    libxext6 \
+    libx11-6 \
+    && rm -rf /var/lib/apt/lists/*
+
+# --------------------------------------------------
+# Install RDKit (ARM64-compatible via pip)
+# --------------------------------------------------
+RUN pip install --no-cache-dir rdkit-pypi
+
+# --------------------------------------------------
+# Install Streamlit + other deps
+# --------------------------------------------------
+RUN pip install --no-cache-dir \
+    streamlit \
+    plotly \
+    pandas \
+    pillow \
+    requests
+
+WORKDIR /app
+COPY ../streamlit_app /app
+
+CMD ["streamlit", "run", "app.py", "--server.address=0.0.0.0", "--server.port=8501"]

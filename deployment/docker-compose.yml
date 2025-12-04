@@ -1,0 +1,41 @@
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile.api
+    container_name: quantum-drug-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../experiments:/app/experiments
+      - ../data:/app/data
+    restart: unless-stopped
+    environment:
+      PYTHONUNBUFFERED: 1
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  streamlit:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile.streamlit
+    container_name: quantum-drug-streamlit
+    command: streamlit run app.py --server.address=0.0.0.0 --server.port=8501
+    ports:
+      - "8501:8501"
+    volumes:
+      - ../streamlit_app:/app
+      - ../experiments:/app/experiments
+    environment:
+      API_URL: http://api:8000
+    depends_on:
+      - api
+    restart: unless-stopped
+
+networks:
+  default:
+    name: quantum-drug-network
