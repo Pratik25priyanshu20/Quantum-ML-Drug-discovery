@@ -571,11 +571,11 @@ If you use this code in your research, please cite:
 
 ```bibtex
 @misc{quantum-drug-discovery-2024,
-  author = {Your Name},
+  author = Pratik Priyanshu,
   title = {Quantum Machine Learning for Drug Discovery: A Comprehensive Comparison},
-  year = {2024},
+  year = 2025,
   publisher = {GitHub},
-  url = {https://github.com/yourusername/quantum-drug-discovery}
+  url = https://github.com/Pratik25priyanshu20/quantum-drug-discovery}
 }
 ```
 
@@ -583,11 +583,10 @@ If you use this code in your research, please cite:
 
 ## 📧 Contact
 
-**Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
-- Email: your.email@example.com
-- Blog: [Medium](https://medium.com/@yourusername)
+**Pratik Priyanshu**
+- GitHub: https://github.com/Pratik25priyanshu20
+- Email: Pratikpriyanshu12345@gmail.com
+
 
 ---
 
